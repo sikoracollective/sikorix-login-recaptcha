@@ -3,7 +3,7 @@
  * Admin settings for Google reCAPTCHA keys.
  *
  * Stores the site ID and secret key under the `slr_settings` option and
- * exposes them on Settings → Sikora Login reCAPTCHA.
+ * exposes them on Settings → Sikorix Login reCAPTCHA.
  *
  * @package SLR
  */
@@ -75,7 +75,7 @@ class SLR_Settings {
 			sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( $url ),
-				esc_html__( 'Settings', 'sikora-login-recaptcha' )
+				esc_html__( 'Settings', 'sikorix-login-recaptcha' )
 			)
 		);
 
@@ -130,8 +130,8 @@ class SLR_Settings {
 	 */
 	public function add_settings_page() {
 		add_options_page(
-			__( 'Sikora Login reCAPTCHA', 'sikora-login-recaptcha' ),
-			__( 'Sikora Login reCAPTCHA', 'sikora-login-recaptcha' ),
+			__( 'Sikorix Login reCAPTCHA', 'sikorix-login-recaptcha' ),
+			__( 'Sikorix Login reCAPTCHA', 'sikorix-login-recaptcha' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_settings_page' )
@@ -160,14 +160,14 @@ class SLR_Settings {
 
 		add_settings_section(
 			'slr_main_section',
-			__( 'Google reCAPTCHA v2', 'sikora-login-recaptcha' ),
+			__( 'Google reCAPTCHA v2', 'sikorix-login-recaptcha' ),
 			array( $this, 'render_section_description' ),
 			self::PAGE_SLUG
 		);
 
 		add_settings_field(
 			'slr_site_key',
-			__( 'ID', 'sikora-login-recaptcha' ),
+			__( 'ID', 'sikorix-login-recaptcha' ),
 			array( $this, 'render_site_key_field' ),
 			self::PAGE_SLUG,
 			'slr_main_section'
@@ -175,7 +175,7 @@ class SLR_Settings {
 
 		add_settings_field(
 			'slr_secret_key',
-			__( 'Secret Key', 'sikora-login-recaptcha' ),
+			__( 'Secret Key', 'sikorix-login-recaptcha' ),
 			array( $this, 'render_secret_key_field' ),
 			self::PAGE_SLUG,
 			'slr_main_section'
@@ -254,11 +254,11 @@ class SLR_Settings {
 		echo '<ul class="slr-settings-bullets">';
 		echo '<li>' . esc_html__(
 			'Values for the fields below should be created with Google\'s reCAPTCHA admin console.',
-			'sikora-login-recaptcha'
+			'sikorix-login-recaptcha'
 		) . '</li>';
 		echo '<li>' . esc_html__(
 			'The reCAPTCHA element will not appear on the WordPress login page if any value is missing.',
-			'sikora-login-recaptcha'
+			'sikorix-login-recaptcha'
 		) . '</li>';
 		echo '</ul>';
 	}

@@ -159,7 +159,7 @@ class SLR_Login {
 
 			return new WP_Error(
 				'slr_invalid_login_nonce',
-				__( '<strong>Error:</strong> Login security check failed. Please try again.', 'sikora-login-recaptcha' )
+				__( '<strong>Error:</strong> Login security check failed. Please try again.', 'sikorix-login-recaptcha' )
 			);
 		}
 
@@ -179,7 +179,7 @@ class SLR_Login {
 
 			return new WP_Error(
 				'slr_missing_recaptcha',
-				__( '<strong>Error:</strong> Please complete the reCAPTCHA.', 'sikora-login-recaptcha' )
+				__( '<strong>Error:</strong> Please complete the reCAPTCHA.', 'sikorix-login-recaptcha' )
 			);
 		}
 
@@ -260,11 +260,11 @@ class SLR_Login {
 		if ( ! $success ) {
 			$this->log_error( 'Verify failed: Google returned success=false.' );
 
-			$message = __( '<strong>Error:</strong> reCAPTCHA verification failed. Please try again.', 'sikora-login-recaptcha' );
+			$message = __( '<strong>Error:</strong> reCAPTCHA verification failed. Please try again.', 'sikorix-login-recaptcha' );
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				$message = sprintf(
 					/* translators: %s: Google reCAPTCHA error codes */
-					__( '<strong>Error:</strong> reCAPTCHA was rejected by Google (%s). Please try again.', 'sikora-login-recaptcha' ),
+					__( '<strong>Error:</strong> reCAPTCHA was rejected by Google (%s). Please try again.', 'sikorix-login-recaptcha' ),
 					esc_html( $codes )
 				);
 			}
@@ -281,11 +281,11 @@ class SLR_Login {
 				)
 			);
 
-			$message = __( '<strong>Error:</strong> reCAPTCHA verification failed. Please try again.', 'sikora-login-recaptcha' );
+			$message = __( '<strong>Error:</strong> reCAPTCHA verification failed. Please try again.', 'sikorix-login-recaptcha' );
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				$message = sprintf(
 					/* translators: %s: hostname returned by Google */
-					__( '<strong>Error:</strong> reCAPTCHA hostname mismatch (%s). Please try again.', 'sikora-login-recaptcha' ),
+					__( '<strong>Error:</strong> reCAPTCHA hostname mismatch (%s). Please try again.', 'sikorix-login-recaptcha' ),
 					esc_html( $hostname )
 				);
 			}
@@ -356,7 +356,7 @@ class SLR_Login {
 
 		return new WP_Error(
 			'slr_recaptcha_request_failed',
-			__( '<strong>Error:</strong> Could not verify reCAPTCHA. Please try again.', 'sikora-login-recaptcha' )
+			__( '<strong>Error:</strong> Could not verify reCAPTCHA. Please try again.', 'sikorix-login-recaptcha' )
 		);
 	}
 
@@ -433,7 +433,7 @@ class SLR_Login {
 		}
 
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- gated by WP_DEBUG_LOG for site owners debugging verify failures
-		error_log( 'Sikora Login reCAPTCHA: ' . $message );
+		error_log( 'Sikorix Login reCAPTCHA: ' . $message );
 	}
 
 	/**

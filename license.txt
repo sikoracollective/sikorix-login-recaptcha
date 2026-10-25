@@ -1,4 +1,4 @@
-Sikora Login reCAPTCHA
+Sikorix Login reCAPTCHA
 Copyright (C) Sikora Collective
 
 This program is free software; you can redistribute it and/or modify

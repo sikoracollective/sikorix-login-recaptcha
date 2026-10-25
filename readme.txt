@@ -1,18 +1,18 @@
-=== Sikora Login reCAPTCHA ===
+=== Sikorix Login reCAPTCHA ===
 Contributors: sikoracollective
 Tags: recaptcha, login, security, captcha, spam
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds Google reCAPTCHA v2 to the WordPress login page.
+Adds Google reCAPTCHA v2 to the WordPress login page
 
 == Description ==
 
-Sikora Login reCAPTCHA protects the WordPress login form with Google reCAPTCHA v2 ("I'm not a robot" Checkbox).
+Sikorix Login reCAPTCHA protects the WordPress login form with Google reCAPTCHA v2 ("I'm not a robot" Checkbox).
 
 This plugin is an interface to Google's reCAPTCHA service. You must create your own reCAPTCHA v2 site credentials in Google's admin console and save them in the plugin settings. Google's script and verification API are used only after those credentials are saved.
 
@@ -20,7 +20,7 @@ Features:
 
 * Adds the reCAPTCHA checkbox to the login page
 * Verifies the response with Google during login authentication
-* Settings page (**Settings → Sikora Login reCAPTCHA**) for your site key (ID) and Secret Key
+* Settings page (**Settings → Sikorix Login reCAPTCHA**) for your site key (ID) and Secret Key
 * Leaves login unchanged until both values are configured (avoids accidental lockouts)
 * On delete, removes everything it stored—including settings—so nothing from the plugin remains
 
@@ -30,7 +30,7 @@ Create credentials here: https://www.google.com/recaptcha/admin
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory, or install the zip through **Plugins → Add New**.
 2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **Settings → Sikora Login reCAPTCHA**.
+3. Go to **Settings → Sikorix Login reCAPTCHA**.
 4. Enter your Google reCAPTCHA v2 site key (ID) and Secret Key from https://www.google.com/recaptcha/admin
 5. Save changes and open the login page to confirm the widget appears.
 
@@ -57,6 +57,10 @@ When configured, the login page loads Google's reCAPTCHA script. On login, your 
 Everything the plugin stored is removed—including its settings—so nothing from the plugin remains on the site.
 
 == Changelog ==
+
+= 1.4.0 =
+* Renamed the plugin to Sikorix Login reCAPTCHA.
+* Updated file, slug, and text domain to sikorix-login-recaptcha.
 
 = 1.3.0 =
 * Improved reCAPTCHA token handling and hostname matching.
