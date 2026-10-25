@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PLUGIN_SLUG="sikora-login-recaptcha"
+PLUGIN_SLUG="sikorix-login-recaptcha"
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DIST_ZIP="${ROOT_DIR}/${PLUGIN_SLUG}.zip"
 TEMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/${PLUGIN_SLUG}-build.XXXXXX")"
@@ -16,7 +16,7 @@ mkdir -p "${STAGE_DIR}"
 
 # files/directories included in the installable plugin zip
 INCLUDE_PATHS=(
-	"sikora-login-recaptcha.php"
+	"sikorix-login-recaptcha.php"
 	"includes"
 	"uninstall.php"
 	"license.txt"

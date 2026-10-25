@@ -1,4 +1,4 @@
-# Sikora Login reCAPTCHA
+# Sikorix Login reCAPTCHA
 
 Adds Google reCAPTCHA v2 to the WordPress login page.
 
@@ -11,8 +11,8 @@ Adds Google reCAPTCHA v2 to the WordPress login page.
 ## Installation
 
 1. Copy this folder into `wp-content/plugins/`, or install the zip from `./build.sh`.
-2. Activate **Sikora Login reCAPTCHA** in **Plugins**.
-3. Go to **Settings → Sikora Login reCAPTCHA**.
+2. Activate **Sikorix Login reCAPTCHA** in **Plugins**.
+3. Go to **Settings → Sikorix Login reCAPTCHA**.
 4. Under **Google reCAPTCHA v2**, paste your **ID** and **Secret Key**.
 5. Save changes.
 
@@ -26,8 +26,8 @@ Adds Google reCAPTCHA v2 to the WordPress login page.
 ## Project Structure
 
 ```
-sikora-login-recaptcha/
-├── sikora-login-recaptcha.php  # plugin bootstrap
+sikorix-login-recaptcha/
+├── sikorix-login-recaptcha.php  # plugin bootstrap
 ├── includes/
 │   ├── class-slr-settings.php  # admin settings page
 │   └── class-slr-login.php     # login widget + verification
