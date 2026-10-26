@@ -54,39 +54,11 @@ class SLR_Settings {
 		$this->maybe_migrate_legacy_option();
 
 		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
-		add_action( 'admin_init', array( $this, 'block_non_admin_settings_access' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_init', array( $this, 'maybe_disable_option_autoload' ) );
 		add_action( 'add_option_' . self::OPTION_NAME, array( $this, 'disable_option_autoload' ) );
 		add_action( 'update_option_' . self::OPTION_NAME, array( $this, 'disable_option_autoload' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( SLR_PLUGIN_FILE ), array( $this, 'add_plugin_action_links' ) );
-		add_filter( 'all_plugins', array( $this, 'hide_plugin_from_non_admins' ) );
-	}
-
-	/**
-	 * Whether the current user may manage this plugin (Administrator).
-	 *
-	 * @return bool
-	 */
-	private function current_user_can_manage() {
-		return current_user_can( 'manage_options' ); // administrators only
-	}
-
-	/**
-	 * Hide this plugin from the Plugins list for non-Administrators.
-	 *
-	 * @param array<string, array<string, mixed>> $plugins Installed plugins.
-	 * @return array<string, array<string, mixed>>
-	 */
-	public function hide_plugin_from_non_admins( $plugins ) {
-		if ( $this->current_user_can_manage() ) {
-			return $plugins;
-		}
-
-		$plugin_file = plugin_basename( SLR_PLUGIN_FILE );
-		unset( $plugins[ $plugin_file ] );
-
-		return $plugins;
 	}
 
 	/**
@@ -96,10 +68,6 @@ class SLR_Settings {
 	 * @return string[]
 	 */
 	public function add_plugin_action_links( $links ) {
-		if ( ! $this->current_user_can_manage() ) {
-			return $links;
-		}
-
 		$url = admin_url( 'options-general.php?page=' . self::PAGE_SLUG );
 
 		array_unshift(
@@ -156,37 +124,11 @@ class SLR_Settings {
 	}
 
 	/**
-	 * Deny settings page access for non-Administrators (direct URL included).
-	 *
-	 * @return void
-	 */
-	public function block_non_admin_settings_access() {
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
-		if ( self::PAGE_SLUG !== $page ) {
-			return;
-		}
-
-		if ( $this->current_user_can_manage() ) {
-			return;
-		}
-
-		wp_die(
-			esc_html__( 'You are not allowed to view these settings.', 'sikorix-login-recaptcha' ),
-			esc_html__( 'Access Denied', 'sikorix-login-recaptcha' ),
-			array( 'response' => 403 )
-		);
-	}
-
-	/**
 	 * Add the plugin settings page under Settings.
 	 *
 	 * @return void
 	 */
 	public function add_settings_page() {
-		if ( ! $this->current_user_can_manage() ) {
-			return; // no menu item for non-admins
-		}
-
 		add_options_page(
 			__( 'Sikorix Login reCAPTCHA', 'sikorix-login-recaptcha' ),
 			__( 'Sikorix Login reCAPTCHA', 'sikorix-login-recaptcha' ),
@@ -202,16 +144,11 @@ class SLR_Settings {
 	 * @return void
 	 */
 	public function register_settings() {
-		if ( ! $this->current_user_can_manage() ) {
-			return; // do not expose settings UI or option registration to non-admins
-		}
-
 		register_setting(
 			self::OPTION_GROUP,
 			self::OPTION_NAME,
 			array(
 				'type'              => 'array',
-				'capability'        => 'manage_options',
 				'sanitize_callback' => array( $this, 'sanitize_settings' ),
 				'default'           => array(
 					'site_key'   => '',
@@ -255,16 +192,6 @@ class SLR_Settings {
 	 * }
 	 */
 	public function sanitize_settings( $input ) {
-		if ( ! $this->current_user_can_manage() ) {
-			return get_option(
-				self::OPTION_NAME,
-				array(
-					'site_key'   => '',
-					'secret_key' => '',
-				)
-			);
-		}
-
 		$output = array(
 			'site_key'   => '',
 			'secret_key' => '',
@@ -377,12 +304,8 @@ class SLR_Settings {
 	 * @return void
 	 */
 	public function render_settings_page() {
-		if ( ! $this->current_user_can_manage() ) {
-			wp_die(
-				esc_html__( 'You are not allowed to view these settings.', 'sikorix-login-recaptcha' ),
-				esc_html__( 'Access Denied', 'sikorix-login-recaptcha' ),
-				array( 'response' => 403 )
-			);
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
 		}
 		?>
 		<div class="wrap">
