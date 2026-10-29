@@ -3,7 +3,7 @@
  * Admin settings for Google reCAPTCHA keys.
  *
  * Stores the Site Key / ID and secret key under the `slr_settings` option and
- * exposes them on Settings → Sikorix Login reCAPTCHA.
+ * exposes them on Sikorix → Login reCAPTCHA.
  *
  * @package SLR
  */
@@ -39,7 +39,14 @@ class SLR_Settings {
 	const LEGACY_OPTION_NAME = 'sgrwl_settings';
 
 	/**
-	 * Settings page slug under Settings.
+	 * Top-level Sikorix admin menu slug.
+	 *
+	 * @var string
+	 */
+	const PARENT_SLUG = 'sikorix';
+
+	/**
+	 * Settings page slug under Sikorix.
 	 *
 	 * @var string
 	 */
@@ -68,7 +75,7 @@ class SLR_Settings {
 	 * @return string[]
 	 */
 	public function add_plugin_action_links( $links ) {
-		$url = admin_url( 'options-general.php?page=' . self::PAGE_SLUG );
+		$url = admin_url( 'admin.php?page=' . self::PAGE_SLUG );
 
 		array_unshift(
 			$links,
@@ -124,18 +131,50 @@ class SLR_Settings {
 	}
 
 	/**
-	 * Add the plugin settings page under Settings.
+	 * Add the plugin settings page under Sikorix → Login reCAPTCHA.
 	 *
 	 * @return void
 	 */
 	public function add_settings_page() {
-		add_options_page(
+		global $admin_page_hooks;
+
+		$created_parent = false;
+		if ( ! isset( $admin_page_hooks[ self::PARENT_SLUG ] ) ) {
+			add_menu_page(
+				__( 'Sikorix', 'sikorix-login-recaptcha' ),
+				__( 'Sikorix', 'sikorix-login-recaptcha' ),
+				'manage_options',
+				self::PARENT_SLUG,
+				array( $this, 'redirect_to_settings_page' ),
+				'dashicons-shield',
+				58
+			);
+			$created_parent = true;
+		}
+
+		add_submenu_page(
+			self::PARENT_SLUG,
 			__( 'Sikorix Login reCAPTCHA', 'sikorix-login-recaptcha' ),
-			__( 'Sikorix Login reCAPTCHA', 'sikorix-login-recaptcha' ),
+			__( 'Login reCAPTCHA', 'sikorix-login-recaptcha' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_settings_page' )
 		);
+
+		// drop WP's auto-added parent duplicate so only Login reCAPTCHA shows
+		if ( $created_parent ) {
+			remove_submenu_page( self::PARENT_SLUG, self::PARENT_SLUG );
+		}
+	}
+
+	/**
+	 * Send top-level Sikorix clicks to this plugin's settings page.
+	 *
+	 * @return void
+	 */
+	public function redirect_to_settings_page() {
+		wp_safe_redirect( admin_url( 'admin.php?page=' . self::PAGE_SLUG ) );
+		exit;
 	}
 
 	/**
