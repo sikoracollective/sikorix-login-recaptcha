@@ -20,7 +20,7 @@ Features:
 
 * Adds the reCAPTCHA checkbox to the login page
 * Verifies the response with Google during login authentication
-* Settings page (**Settings → Sikorix Login reCAPTCHA**) for your Site Key / ID and Secret Key
+* Settings page (**Sikorix → Login reCAPTCHA**) for your Site Key / ID and Secret Key
 * Leaves login unchanged until both values are configured (avoids accidental lockouts)
 * On delete, removes everything it stored—including settings—so nothing from the plugin remains
 
@@ -30,7 +30,7 @@ Create credentials here: https://www.google.com/recaptcha/admin
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory, or install the zip through **Plugins → Add New**.
 2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **Settings → Sikorix Login reCAPTCHA**.
+3. Go to **Sikorix → Login reCAPTCHA**.
 4. Enter your Google reCAPTCHA v2 Site Key / ID and Secret Key from https://www.google.com/recaptcha/admin
 5. Save changes and open the login page to confirm the widget appears.
 
