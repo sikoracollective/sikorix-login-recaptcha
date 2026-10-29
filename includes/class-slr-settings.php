@@ -2,7 +2,7 @@
 /**
  * Admin settings for Google reCAPTCHA keys.
  *
- * Stores the site ID and secret key under the `slr_settings` option and
+ * Stores the Site Key / ID and secret key under the `slr_settings` option and
  * exposes them on Settings → Sikorix Login reCAPTCHA.
  *
  * @package SLR
@@ -115,7 +115,7 @@ class SLR_Settings {
 	}
 
 	/**
-	 * Whether both the ID and Secret Key are present.
+	 * Whether both the Site Key / ID and Secret Key are present.
 	 *
 	 * @return bool
 	 */
@@ -167,7 +167,7 @@ class SLR_Settings {
 
 		add_settings_field(
 			'slr_site_key',
-			__( 'ID', 'sikorix-login-recaptcha' ),
+			__( 'Site Key / ID', 'sikorix-login-recaptcha' ),
 			array( $this, 'render_site_key_field' ),
 			self::PAGE_SLUG,
 			'slr_main_section'
@@ -264,7 +264,7 @@ class SLR_Settings {
 	}
 
 	/**
-	 * Render the ID (site key) input field.
+	 * Render the Site Key / ID input field.
 	 *
 	 * @return void
 	 */
