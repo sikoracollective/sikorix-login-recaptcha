@@ -327,9 +327,9 @@ class SLR_Settings {
 	 * @return void
 	 */
 	private function render_settings_field( $key ) {
-		// text + readonly-until-focus blocks browser credential autofill
+		// autocomplete + manager ignore attrs reduce credential autofill
 		printf(
-			'<input type="text" class="regular-text slr-settings-input" name="%1$s[%2$s]" value="%3$s" autocomplete="new-password" spellcheck="false" readonly="readonly" data-1p-ignore="true" data-lpignore="true" data-bwignore="true" data-form-type="other" />',
+			'<input type="text" class="regular-text slr-settings-input" name="%1$s[%2$s]" value="%3$s" autocomplete="off" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-bwignore="true" data-form-type="other" />',
 			esc_attr( self::OPTION_NAME ),
 			esc_attr( $key ),
 			esc_attr( $this->get( $key ) )
@@ -377,13 +377,6 @@ class SLR_Settings {
 				</div>
 				<?php submit_button(); ?>
 			</form>
-			<script>
-				document.querySelectorAll( '.slr-settings-input[readonly]' ).forEach( function( el ) {
-					el.addEventListener( 'focus', function() {
-						this.removeAttribute( 'readonly' );
-					} );
-				} );
-			</script>
 		</div>
 		<?php
 	}

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Sikorix Login reCAPTCHA
  * Description:       Adds Google reCAPTCHA v2 to the WordPress login page.
- * Version:           1.4.0
+ * Version:           1.4.1
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Sikora Collective
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // prevent direct access
 }
 
-define( 'SLR_VERSION', '1.4.0' );                          // plugin version
+define( 'SLR_VERSION', '1.4.1' );                          // plugin version
 define( 'SLR_PLUGIN_FILE', __FILE__ );                     // main plugin file path
 define( 'SLR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );   // plugin directory path
 define( 'SLR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );    // plugin directory url
