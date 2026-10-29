@@ -288,15 +288,9 @@ class SLR_Settings {
 	 * @return void
 	 */
 	private function render_settings_field( $key ) {
-<<<<<<< Updated upstream
-		// type=text avoids password-manager autofill into emptied key fields
-		printf(
-			'<input type="text" class="regular-text" name="%1$s[%2$s]" value="%3$s" autocomplete="off" spellcheck="false" />',
-=======
 		// text + readonly-until-focus blocks browser credential autofill
 		printf(
 			'<input type="text" class="regular-text slr-settings-input" name="%1$s[%2$s]" value="%3$s" autocomplete="new-password" spellcheck="false" readonly="readonly" data-1p-ignore="true" data-lpignore="true" data-bwignore="true" data-form-type="other" />',
->>>>>>> Stashed changes
 			esc_attr( self::OPTION_NAME ),
 			esc_attr( $key ),
 			esc_attr( $this->get( $key ) )
