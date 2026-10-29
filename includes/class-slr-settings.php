@@ -269,7 +269,7 @@ class SLR_Settings {
 	 * @return void
 	 */
 	public function render_site_key_field() {
-		$this->render_settings_field( 'site_key', 'text' );
+		$this->render_settings_field( 'site_key' );
 	}
 
 	/**
@@ -278,20 +278,19 @@ class SLR_Settings {
 	 * @return void
 	 */
 	public function render_secret_key_field() {
-		$this->render_settings_field( 'secret_key', 'password' );
+		$this->render_settings_field( 'secret_key' );
 	}
 
 	/**
 	 * Render a settings text input for the given option key.
 	 *
-	 * @param string $key  Setting key (`site_key` or `secret_key`).
-	 * @param string $type Input type (`text` or `password`).
+	 * @param string $key Setting key (`site_key` or `secret_key`).
 	 * @return void
 	 */
-	private function render_settings_field( $key, $type ) {
+	private function render_settings_field( $key ) {
+		// text + readonly-until-focus blocks browser credential autofill
 		printf(
-			'<input type="%1$s" class="regular-text" name="%2$s[%3$s]" value="%4$s" autocomplete="off" />',
-			esc_attr( $type ),
+			'<input type="text" class="regular-text slr-settings-input" name="%1$s[%2$s]" value="%3$s" autocomplete="new-password" spellcheck="false" readonly="readonly" data-1p-ignore="true" data-lpignore="true" data-bwignore="true" data-form-type="other" />',
 			esc_attr( self::OPTION_NAME ),
 			esc_attr( $key ),
 			esc_attr( $this->get( $key ) )
@@ -332,13 +331,20 @@ class SLR_Settings {
 				}
 			</style>
 			<h1 style="font-weight: 700;"><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<form action="options.php" method="post">
+			<form action="options.php" method="post" autocomplete="off">
 				<?php settings_fields( self::OPTION_GROUP ); ?>
 				<div class="slr-settings-section">
 					<?php do_settings_sections( self::PAGE_SLUG ); ?>
 				</div>
 				<?php submit_button(); ?>
 			</form>
+			<script>
+				document.querySelectorAll( '.slr-settings-input[readonly]' ).forEach( function( el ) {
+					el.addEventListener( 'focus', function() {
+						this.removeAttribute( 'readonly' );
+					} );
+				} );
+			</script>
 		</div>
 		<?php
 	}
