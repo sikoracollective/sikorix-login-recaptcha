@@ -4,7 +4,7 @@ Tags: recaptcha, login, security, captcha, spam
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ When configured, the login page loads Google's reCAPTCHA script. On login, your 
 Everything the plugin stored is removed—including its settings—so nothing from the plugin remains on the site.
 
 == Changelog ==
+
+= 1.4.2 =
+* Show the plugin version after the settings page title.
 
 = 1.4.1 =
 * Settings text fields are always editable (removed readonly-until-focus).
