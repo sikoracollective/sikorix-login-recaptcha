@@ -348,6 +348,11 @@ class SLR_Settings {
 		?>
 		<div class="wrap">
 			<style>
+				.slr-settings-version {
+					font-size: 0.55em;
+					font-weight: 400;
+					margin-left: 0.4em;
+				}
 				.slr-settings-section > ul.slr-settings-bullets {
 					list-style: disc;
 					margin: 0.5em 0 1em 1.5em;
@@ -369,7 +374,10 @@ class SLR_Settings {
 					vertical-align: top;
 				}
 			</style>
-			<h1 style="font-weight: 700;"><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			<h1 style="font-weight: 700;">
+				<?php echo esc_html( get_admin_page_title() ); ?>
+				<span class="slr-settings-version"><?php echo esc_html( SLR_VERSION ); ?></span>
+			</h1>
 			<form action="options.php" method="post" autocomplete="off">
 				<?php settings_fields( self::OPTION_GROUP ); ?>
 				<div class="slr-settings-section">
